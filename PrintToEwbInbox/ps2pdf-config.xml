@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<printerConfiguration>
+
+    <variables>
+
+        <!-- Printer output paths -->
+        <!-- The root directory to write to -->
+        <variable name="app-root" value="%APPDATA%\ID Business Solutions Limited\Web Printer"/>
+      
+        <!-- The directory to write files coming from the virtual printer -->
+        <variable name="printer-dir" value="${app-root}\port" />
+
+        <!-- The directory to move files to (a staging area) -->
+        <variable name="queue-dir"  value="${app-root}\queue" />
+
+        <!-- The directory to write converted files to -->
+        <variable name="pdf-dir"     value="${app-root}\converted" />
+
+        <!-- Command line tool used for converting ps files to pdf -->
+        <variable name="ps2pdf-exe" value="gs64\gswin64c.exe" />
+
+        <!-- Virtual Printer configuration -->
+        <!-- The name of the windows virtual printer (user visible) -->
+        <variable name="printer-name" value="Print To E-WorkBook Web" />
+
+        <!-- Driver set up -->
+        <variable name="driver-name" value="Print To E-WorkBook Web Driver" />
+
+        <variable name="driver-config-file" value="ps5ui.dll" />
+
+        <variable name="driver-data-file" value="ewbps5.ppd" />
+
+        <variable name="driver-help-file" value="pscript.hlp" />
+
+        <variable name="driver-dependent-file" value="pscript.ntf" />
+
+        <variable name="driver-path" value="pscript5.dll" />
+
+        <variable name="driver-environment" value="Windows x64" />
+
+        <!-- The file extension of the files written to by the print driver -->
+        <variable name="printer-file-extension" value=".ps"/>
+
+        <variable name="pdf-extension" value=".pdf"/>
+
+        <!-- The UI application to launch with the printer file -->
+        <variable name="send-to-inbox-exe" value="SendToInboxUI.exe" />
+
+		    <!-- The new UI application to launch with the printer file -->
+        <variable name="print-to-ewb-web-exe" value="PrintToEWorkBookWeb\Print to E-WorkBook Web.exe" />
+		
+    </variables>
+
+    <processors>
+        <!-- Wait until the file is ready (printer has finished writing to it -->
+        <processor name="WaitForFileProcessor" />
+
+        <!-- Move the file to a staging area -->
+        <processor name="MoveFileProcessor">
+            <init>
+                <param name="destinationDirectory" value="${queue-dir}" />
+            </init>
+        </processor>
+
+        <!-- Convert the staging file to a PDF document -->
+        <processor name="CommandLineConversionProcessor">
+            <init>
+                <param name="executablePath"      value="${ps2pdf-exe}" />
+                <param name="outputFolderName"    value="${pdf-dir}" />
+                <param name="outputFileExtension" value="${pdf-extension}" />
+                <param name="commandLineTemplate" value=' -dNOPAUSE -dBATCH -dSAFER -sOutputFile="{1}" -sDEVICE=pdfwrite "{0}"' />
+            </init>
+        </processor>
+
+        <!-- Launch the UI program to prompt the user to insert into E-WorkBook -->
+        <processor name="LaunchApplicationCommand">
+            <init>
+                <param name="applicationPath" value="${print-to-ewb-web-exe}" />
+            </init>
+        </processor>
+
+    </processors>
+
+</printerConfiguration>

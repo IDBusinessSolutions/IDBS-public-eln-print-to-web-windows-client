@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<printerConfiguration>
+    
+    <variables>
+
+        <!-- Printer output paths -->
+        <!-- The root directory to write to -->
+        <variable name="app-root" value="%APPDATA%\ID Business Solutions Limited\Printer"/>
+
+        <!-- The directory to write files coming from the virtual printer -->
+        <variable name="printer-dir" value="${app-root}\port" />
+
+        <!-- The directory to move files to (a staging area) -->
+        <variable name="queue-dir"  value="${app-root}\queue" />
+
+        <!-- The directory to write converted files to -->
+        <variable name="pdf-dir"     value="${app-root}\converted" />
+
+        <!-- Virtual Printer configuration -->
+        <!-- The name of the windows virtual printer (user visible) -->
+        <variable name="printer-name" value="Send To E-WorkBook" />
+
+        <!-- The driver used by this printer -->
+        <variable name="printer-driver" value="Passthrough XPS" />
+
+        <!-- The file extension of the files written to by the print driver -->
+        <variable name="printer-file-extension" value=".xps"/>
+
+        <!-- Output processing configuration -->
+        <variable name="pdf-extension" value=".pdf" />
+
+        <!-- The name of the command line tool used for conversion to PDF -->
+        <variable name="xps2pdf-exe" value="gxps-9.14-win32.exe" />
+
+        <!-- The UI application to launch with the printer file -->
+        <variable name="send-to-inbox-exe" value="C:\Users\hcheung\Documents\MyTasks\Electron POC\send-to-ewb-web\v0.2\Print to E-WorkBook Web-win32-x64\Print to E-WorkBook Web.exe" />
+		
+		    <!-- The path of the Electron POC root. e.g. C:\Users\hcheung\Documents\Electron POC\ewb-hierarchy-browser-demo -->
+		    <variable name="electron-poc-root" value="C:\Users\hcheung\Documents\MyTasks\Electron POC\ewb-hierarchy-browser-demo\v0.3" />
+      
+    </variables>
+    
+    <processors>
+        <!-- Wait until the file is ready (printer has finished writing to it -->
+        <processor name="WaitForFileProcessor" />
+
+        <!-- Move the file to a staging area -->
+        <processor name="MoveFileProcessor">
+            <init>
+                <param name="destinationDirectory" value="${queue-dir}" />
+            </init>
+        </processor>
+
+        <!-- Convert the staging file to a PDF document -->
+        <processor name="CommandLineConversionProcessor">
+            <init>
+                <param name="executablePath"      value="${xps2pdf-exe}" />
+                <param name="outputFolderName"    value="${pdf-dir}" />
+                <param name="outputFileExtension" value="${pdf-extension}" />
+                <param name="commandLineTemplate" value=' -dNOPAUSE -dBATCH -dSAFER -sOutputFile="{1}" -sDEVICE=pdfwrite "{0}"' />
+            </init>
+        </processor>
+
+        <!-- Launch the UI program to prompt the user to insert into E-WorkBook -->
+        <processor name="LaunchApplicationCommand">
+            <init>
+                <param name="applicationPath" value="${send-to-inbox-exe}" />
+            </init>
+        </processor>
+    </processors>
+
+</printerConfiguration>
