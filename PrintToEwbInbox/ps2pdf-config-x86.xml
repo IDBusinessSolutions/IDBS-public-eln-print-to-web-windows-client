@@ -21,10 +21,10 @@
         
         <!-- Virtual Printer configuration -->
         <!-- The name of the windows virtual printer (user visible) -->
-        <variable name="printer-name" value="Print To E-WorkBook Web" />
+        <variable name="printer-name" value="Print To IDBS Web" />
 
         <!-- Driver set up -->
-        <variable name="driver-name" value="Print To E-WorkBook Web Driver" />
+        <variable name="driver-name" value="Print To IDBS Web Driver" />
 
         <variable name="driver-config-file" value="ps5ui.dll" />
 
@@ -50,7 +50,7 @@
         <variable name="send-to-inbox-exe" value="SendToInboxUI.exe" />
 
         <!-- The new UI application to launch with the printer file -->
-        <variable name="print-to-ewb-web-exe" value="PrintToEWorkBookWeb\Print to E-WorkBook Web.exe" />
+        <variable name="print-to-idbs-cloud-web-exe" value="PrintToIDBSCloud\Print to IDBS Cloud Web.exe" />
         
     </variables>
 
@@ -75,10 +75,10 @@
             </init>
         </processor>
 
-        <!-- Launch the UI program to prompt the user to insert into E-WorkBook -->
+        <!-- Launch the UI program to prompt the user to insert into IDBS Cloud -->
         <processor name="LaunchApplicationCommand">
             <init>
-                <param name="applicationPath" value="${print-to-ewb-web-exe}" />
+                <param name="applicationPath" value="${print-to-idbs-cloud-web-exe}" />
             </init>
         </processor>
         

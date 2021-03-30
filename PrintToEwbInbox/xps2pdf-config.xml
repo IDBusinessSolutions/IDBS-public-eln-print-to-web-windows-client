@@ -18,7 +18,7 @@
 
         <!-- Virtual Printer configuration -->
         <!-- The name of the windows virtual printer (user visible) -->
-        <variable name="printer-name" value="Send To E-WorkBook" />
+        <variable name="printer-name" value="Send To IDBS Cloud" />
 
         <!-- The driver used by this printer -->
         <variable name="printer-driver" value="Passthrough XPS" />
@@ -57,7 +57,7 @@
             </init>
         </processor>
 
-        <!-- Launch the UI program to prompt the user to insert into E-WorkBook -->
+        <!-- Launch the UI program to prompt the user to insert into IDBS Cloud -->
         <processor name="LaunchApplicationCommand">
             <init>
                 <param name="applicationPath" value="${send-to-inbox-exe}" />

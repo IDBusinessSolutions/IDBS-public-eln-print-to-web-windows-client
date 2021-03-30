@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyCompany("ID Business Solutions Limited")]
-[assembly: AssemblyCopyright("Copyright © IDBS 2017")]
+[assembly: AssemblyCopyright("Copyright © IDBS 2021")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -42,4 +42,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.2.1")]
+[assembly: AssemblyVersion("2.2.4")]
