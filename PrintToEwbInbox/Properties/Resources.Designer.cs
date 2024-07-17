@@ -80,7 +80,7 @@ namespace PrintToEwbInbox.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-WorkBook Web Printer.
+        ///   Looks up a localized string similar to IDBS Cloud Printer.
         /// </summary>
         internal static string TrayText {
             get {

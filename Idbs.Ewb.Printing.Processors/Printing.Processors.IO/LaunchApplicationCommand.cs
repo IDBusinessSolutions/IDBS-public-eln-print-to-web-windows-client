@@ -111,7 +111,7 @@ namespace Idbs.Ewb.Printing.Processors.IO
                         Logger.ErrorFormat(e.ToString());
                         Logger.InfoFormat("An error has occurred when saving resulted PDF into specific location. Deleting registry key value.");
                         Registry.CurrentUser.OpenSubKey(printToEwbWebKey, true).DeleteValue("SaveToDisk");
-                        Logger.InfoFormat("Launching Print to E-WorkBook Web instead.");
+                        Logger.InfoFormat("Launching Print to IDBS Cloud Web instead.");
                     }
                 }
             }
