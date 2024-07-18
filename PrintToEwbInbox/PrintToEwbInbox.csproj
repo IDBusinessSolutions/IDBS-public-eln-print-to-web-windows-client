@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PrintToEwbInbox</RootNamespace>
-    <AssemblyName>E-WorkBook Web Printer</AssemblyName>
+    <AssemblyName>IDBS Cloud Printer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -52,7 +52,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Signing.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -96,7 +97,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Logs\printer.log" />
-    <None Include="Signing.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="gs32\gsdll32.dll" />
@@ -165,7 +165,7 @@
   <PropertyGroup>
     <PostBuildEvent>cd $(ProjectDir)
 cd ..
-XCOPY "$(SolutionDir)src\Print to E-WorkBook Web-win32-x64" "$(TargetDir)PrintToEWorkBookWeb" /s /i /y</PostBuildEvent>
+XCOPY "$(SolutionDir)src\Print to IDBS Cloud Web-win32-x64" "$(TargetDir)PrintToIDBSCloud" /s /i /y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
